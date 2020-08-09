@@ -28,7 +28,8 @@ namespace ProAgil.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
           services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+          services.AddControllers();
+          services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +50,8 @@ namespace ProAgil.WebAPI
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         }
     }
 }
