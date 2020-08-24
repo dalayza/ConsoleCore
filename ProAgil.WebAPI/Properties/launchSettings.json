@@ -4,15 +4,15 @@
         "windowsAuthentication": false,
         "anonymousAuthentication": true,
         "iisExpress": {
-            "applicationUrl": "http://localhost:58131",
-            "sslPort": 44305
+            "applicationUrl": "http://localhost:20753",
+            "sslPort": 44392
         }
     },
     "profiles": {
         "IIS Express": {
             "commandName": "IISExpress",
             "launchBrowser": true,
-            "launchUrl": "weatherforecast",
+            "launchUrl": "api/values",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
@@ -20,7 +20,7 @@
         "ProAgil.WebAPI": {
             "commandName": "Project",
             "launchBrowser": false,
-            "launchUrl": "weatherforecast",
+            "launchUrl": "api/values",
             "applicationUrl": "http://localhost:5000",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
