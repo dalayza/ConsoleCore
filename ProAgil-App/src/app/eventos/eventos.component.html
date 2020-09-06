@@ -12,8 +12,8 @@
         <tr>
             <th>
                 <button class="btn btn-outline-primary" (click)="alterarImagem()">
-              Mostrar Imagem
-            </button>
+                <i class="{{ mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i>
+              </button>
             </th>
             <th>#</th>
             <th>Tema</th>
@@ -29,15 +29,28 @@
             <td>
                 <img *ngIf="mostrarImagem" src="http://localhost:5000/img/{{ evento.imagemUrl }}" alt="Imagem URL" [style.width.px]="imagemLargura" [style.margin.px]="imagemMargem">
             </td>
-            <th>{{ evento.eventoId }}</th>
+            <th>{{ evento.id }}</th>
             <td>{{ evento.tema }}</td>
             <td>{{ evento.local }}</td>
-            <td>{{ evento.dataEvento }}</td>
-            <td>{{ evento.qtdPerssoas }}</td>
-            <td>{{ evento.lote | uppercase }}</td>
+            <td>{{ evento.dataEvento | DateTimeFormatPipe }}</td>
+            <td>{{ evento.qtdPessoas }}</td>
             <td>
-                <button class="btn-btn-success"></button>
-                <button class="btn-btn-danger"></button>
+                <div *ngIf="!evento.lotes.length">
+                    Nao informado
+                </div>
+                <div *ngIf="evento.lotes.length">
+                    {{ evento.lotes[0].nome | uppercase }}
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn-sm btn-info" tooltip="Editar" (click)="openModal(template)">
+                  <i class="fa fa-edit"></i>
+                </button>
+                    <button class="btn-sm btn-danger" tooltip="Excluir">
+                  <i class="fa fa-erase"></i>
+                </button>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -49,3 +62,15 @@
         </tr>
     </tfoot>
 </table>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        Thi is a modal.
+    </div>
+</ng-template>
